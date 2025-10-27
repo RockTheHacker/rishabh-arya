@@ -1,4 +1,3 @@
-
 "use client";
 
 import { FadeInSection } from "@/components/common/fade-in-section";
@@ -31,7 +30,7 @@ export default function ProjectsSection() {
               return (
                 <Card
                   key={project.id}
-                  className="group flex flex-col overflow-hidden transform transition-all duration-500 hover:shadow-2xl"
+                  className="group flex flex-col overflow-hidden transform transition-all duration-500 hover:shadow-2xl bg-card/50 backdrop-blur-lg"
                 >
                   <CardHeader>
                     <CardTitle className="font-headline text-xl">{project.title}</CardTitle>

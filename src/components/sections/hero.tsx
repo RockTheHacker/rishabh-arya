@@ -16,10 +16,10 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative flex items-center justify-center min-h-[calc(100vh-4rem)] py-20 lg:min-h-screen lg:py-32 print:min-h-0 print:py-16"
+      className="relative flex items-center justify-center min-h-[calc(100vh-4rem)] py-20 lg:py-32 print:min-h-0 print:py-16"
     >
       <FloatingIcons />
-      <div className="absolute inset-0 bg-grid-slate-100/[0.05] [mask-image:linear-gradient(to_bottom,white,transparent)] dark:bg-grid-slate-700/[0.05] print:hidden"></div>
+      <div className="absolute inset-0 bg-grid opacity-50 [mask-image:linear-gradient(to_bottom,white,transparent)] dark:opacity-20 print:hidden"></div>
       <FadeInSection className="z-10 text-center px-4">
         <div className="flex flex-col items-center gap-8 md:flex-row md:gap-12">
             <Image

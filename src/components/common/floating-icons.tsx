@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 const FloatingIcon = ({ icon: Icon, className, style }: { icon: React.ElementType, className?: string, style?: React.CSSProperties }) => (
     <div
       className={cn(
-        "absolute text-primary/20",
+        "absolute text-primary/10",
         className
       )}
       style={style}

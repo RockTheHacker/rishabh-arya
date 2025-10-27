@@ -1,4 +1,3 @@
-
 import { FadeInSection } from "@/components/common/fade-in-section";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { EXPERIENCE_DATA } from "@/lib/data";
@@ -46,7 +45,7 @@ export default function ExperienceSection() {
                     </div>
 
                     <Card
-                      className={`ml-12 sm:ml-0 shadow-lg mt-2`}
+                      className={`ml-12 sm:ml-0 shadow-lg mt-2 bg-card/50 backdrop-blur-lg`}
                     >
                       <CardHeader>
                         <CardTitle className="font-headline text-xl">

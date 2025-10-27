@@ -94,7 +94,7 @@ export default function Chatbot() {
       </AnimatePresence>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="max-w-md p-0 flex flex-col h-[80vh] max-h-[700px] gap-0 rounded-xl overflow-hidden">
+        <DialogContent className="max-w-md p-0 flex flex-col h-[80vh] max-h-[700px] gap-0 rounded-xl overflow-hidden bg-background/80 backdrop-blur-xl">
           <DialogHeader className="p-4 border-b">
             <div className="flex items-center gap-3">
               <Avatar>
@@ -150,7 +150,7 @@ export default function Chatbot() {
             </div>
           </ScrollArea>
 
-          <div className="p-4 border-t bg-background">
+          <div className="p-4 border-t bg-transparent">
             <form onSubmit={handleSubmit} className="flex items-center gap-2">
               <Input
                 value={input}

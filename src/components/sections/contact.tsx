@@ -41,7 +41,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-24 sm:py-32 bg-card">
+    <section id="contact" className="py-24 sm:py-32 bg-card/50 backdrop-blur-lg border-y">
       <FadeInSection>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto">

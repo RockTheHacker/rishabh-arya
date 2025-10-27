@@ -88,6 +88,13 @@ html {
 }
 
 @layer utilities {
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px);
+    background-size: 2rem 2rem;
+  }
+
   @keyframes float-1 {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-20px); }

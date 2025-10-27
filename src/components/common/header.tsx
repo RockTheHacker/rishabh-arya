@@ -2,16 +2,15 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
+  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-  SheetClose,
-  SheetDescription,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import { NAV_LINKS, SITE_CONFIG } from "@/lib/data";
@@ -43,7 +42,7 @@ export function Header() {
         "sticky top-0 z-40 w-full transition-all duration-300",
         isScrolled
           ? "bg-background/80 backdrop-blur-sm border-b"
-          : "bg-background/0"
+          : "bg-transparent"
       )}
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -63,19 +62,19 @@ export function Header() {
                 <span className="sr-only">Open menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] bg-background">
-              <SheetHeader className="border-b pb-4">
+            <SheetContent side="right" className="w-[300px] bg-background/90 backdrop-blur-sm">
+               <SheetHeader className="border-b pb-4 mb-4">
                  <SheetTitle className="text-left text-xl font-bold font-headline">{SITE_CONFIG.name}</SheetTitle>
                  <SheetDescription className="sr-only">A list of navigation links to explore the portfolio of {SITE_CONFIG.name}.</SheetDescription>
               </SheetHeader>
               <div className="flex flex-col h-full">
-                <nav className="flex flex-col items-start gap-4 mt-8">
+                <nav className="flex flex-col items-start gap-4">
                   {NAV_LINKS.map((link) => (
-                    <SheetClose key={link.href} asChild>
-                      <Link href={link.href} className="text-lg w-full text-left">
-                        {link.name}
-                      </Link>
-                    </SheetClose>
+                      <Button key={link.href} variant="link" asChild>
+                        <Link href={link.href} className="text-lg w-full text-left text-foreground">
+                          {link.name}
+                        </Link>
+                      </Button>
                   ))}
                 </nav>
               </div>
