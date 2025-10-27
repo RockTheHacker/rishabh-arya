@@ -10,21 +10,13 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import {
+  ChatbotOrchestratorInputSchema,
+  ChatbotOrchestratorOutputSchema
+} from '@/lib/schemas';
 
-const ChatMessageSchema = z.object({
-  role: z.enum(['user', 'assistant']),
-  content: z.string(),
-});
 
-const ChatbotOrchestratorInputSchema = z.object({
-  history: z.array(ChatMessageSchema).describe("The conversation history."),
-  userInput: z.string().describe('The latest question or message from the user.'),
-});
 export type ChatbotOrchestratorInput = z.infer<typeof ChatbotOrchestratorInputSchema>;
-
-const ChatbotOrchestratorOutputSchema = z.object({
-  response: z.string().describe('The final response to be sent to the user.'),
-});
 export type ChatbotOrchestratorOutput = z.infer<typeof ChatbotOrchestratorOutputSchema>;
 
 export async function chatbotOrchestrator(input: ChatbotOrchestratorInput): Promise<ChatbotOrchestratorOutput> {
@@ -95,27 +87,22 @@ const chatbotOrchestratorFlow = ai.defineFlow(
     inputSchema: ChatbotOrchestratorInputSchema,
     outputSchema: ChatbotOrchestratorOutputSchema,
   },
-  async input => {
-    const llmResponse = await ai.generate({
-      prompt: prompt.prompt,
-      model: ai.lookupModel('googleai/gemini-2.5-flash'),
-      tools: [captureLeadTool],
-      input: input,
-      output: { schema: ChatbotOrchestratorOutputSchema },
-    });
-
-    const output = llmResponse.output();
-    if (!output) {
-      throw new Error("Flow failed to generate valid output.");
-    }
+  async (input) => {
+    const llmResponse = await prompt(input);
 
     const toolCalls = llmResponse.toolCalls();
     if (toolCalls.length > 0) {
       // If the model decides to use the captureLead tool, we override the response
       // to give a standard confirmation message.
+      // In a real app you might want to wait for the tool output using llmResponse.toolRequest()
       return { response: "Thank you! Rishabh has received your details and will get in touch with you shortly." };
     }
     
+    const output = llmResponse.output();
+    if (!output) {
+      throw new Error("Flow failed to generate valid output.");
+    }
+
     return output;
   }
 );
