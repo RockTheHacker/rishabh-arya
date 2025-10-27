@@ -21,7 +21,7 @@ export const SITE_CONFIG = {
   },
   contact: {
     email: "rishabh.work.ai@gmail.com",
-    phone: "+91-9027634330",
+    phone: "919027634330",
   },
 };
 
@@ -121,7 +121,7 @@ export const PROJECTS_DATA = [
   },
   {
     id: "dr-raja-rawal",
-    title: "Dr. Raja Rawal - Appointment Booking",
+    title: "Dr. Raja Rawal",
     description:
       "An appointment and consultation management website offering real-time scheduling, reminders, and data visualization.",
     link: "https://dr-raja-rawal.vercel.app/",

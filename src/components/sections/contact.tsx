@@ -3,7 +3,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -15,13 +14,12 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { submitContactForm } from "@/lib/actions";
 import { ContactFormSchema } from "@/lib/schemas";
 import { FadeInSection } from "@/components/common/fade-in-section";
 import { Loader2 } from "lucide-react";
+import { SITE_CONFIG } from "@/lib/data";
 
 export default function ContactSection() {
-  const { toast } = useToast();
   const form = useForm<z.infer<typeof ContactFormSchema>>({
     resolver: zodResolver(ContactFormSchema),
     defaultValues: {
@@ -32,21 +30,13 @@ export default function ContactSection() {
   });
 
   const onSubmit = async (values: z.infer<typeof ContactFormSchema>) => {
-    const result = await submitContactForm(values);
-
-    if (result.success) {
-      toast({
-        title: "Message Sent!",
-        description: result.message,
-      });
-      form.reset();
-    } else {
-      toast({
-        variant: "destructive",
-        title: "Uh oh! Something went wrong.",
-        description: result.message,
-      });
-    }
+    const { name, email, message } = values;
+    const whatsappMessage = `Hello, I'm ${name} (${email}).\n\nMy project inquiry is:\n${message}`;
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    const whatsappUrl = `https://wa.me/${SITE_CONFIG.contact.phone.replace(/\D/g, '')}?text=${encodedMessage}`;
+    
+    window.open(whatsappUrl, '_blank');
+    form.reset();
   };
 
   return (
@@ -121,7 +111,7 @@ export default function ContactSection() {
                     {form.formState.isSubmitting && (
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                     )}
-                    Send Message
+                    Send on WhatsApp
                   </Button>
                 </div>
               </form>
