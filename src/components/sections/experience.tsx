@@ -29,24 +29,24 @@ export default function ExperienceSection() {
                 
                 <div
                   className={
-                    "sm:w-[calc(50%-2rem)] " +
+                    "w-full sm:w-1/2 " +
                     (index % 2 === 0
-                      ? "sm:ml-0"
-                      : "sm:ml-[calc(50%+2rem)]")
+                      ? "sm:pr-8"
+                      : "sm:pl-8 sm:ml-auto")
                   }
                 >
                     <div 
                       className={
-                        "ml-12 sm:ml-0 p-4 sm:p-0 " +
+                        "ml-12 sm:ml-0 p-0 " +
                         (index % 2 === 0
-                          ? "sm:text-right sm:pr-8"
-                          : "sm:pl-8 sm:text-left")
+                          ? "sm:text-right"
+                          : "sm:text-left")
                       }>
                        <p className="font-semibold text-accent">{item.date}</p>
                     </div>
 
                     <Card
-                      className={`ml-12 sm:ml-0 shadow-lg mt-2 sm:mt-0`}
+                      className={`ml-12 sm:ml-0 shadow-lg mt-2`}
                     >
                       <CardHeader>
                         <CardTitle className="font-headline text-xl">

@@ -37,11 +37,11 @@ export default function ProjectsSection() {
                     <CardTitle className="font-headline text-xl">{project.title}</CardTitle>
                     <CardDescription>{project.description}</CardDescription>
                   </CardHeader>
-                  <CardContent className="flex-grow p-0 relative aspect-[4/3] overflow-hidden">
+                  <CardContent className="flex-grow p-0 relative aspect-video overflow-hidden">
                     <div className={cn(
                       "absolute inset-0 w-full h-full bg-background"
                     )}>
-                       <div className="w-[1280px] h-[960px] origin-top-left scale-[0.27] sm:scale-[0.4] md:scale-[0.3] lg:scale-[0.4] xl:scale-[0.5] pointer-events-none group-hover:pointer-events-auto">
+                       <div className="w-[1280px] h-[720px] origin-top-left scale-[0.27] sm:scale-[0.4] md:scale-[0.3] lg:scale-[0.4] xl:scale-50 pointer-events-none group-hover:pointer-events-auto">
                         <iframe
                           src={project.link}
                           className="w-full h-full border-none"
