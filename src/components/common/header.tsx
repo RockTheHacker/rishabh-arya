@@ -7,8 +7,11 @@ import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
+  SheetHeader,
+  SheetTitle,
   SheetTrigger,
   SheetClose,
+  SheetDescription,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import { NAV_LINKS, SITE_CONFIG } from "@/lib/data";
@@ -61,14 +64,11 @@ export function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] bg-background">
+              <SheetHeader className="border-b pb-4">
+                 <SheetTitle className="text-left text-xl font-bold font-headline">{SITE_CONFIG.name}</SheetTitle>
+                 <SheetDescription className="sr-only">A list of navigation links to explore the portfolio of {SITE_CONFIG.name}.</SheetDescription>
+              </SheetHeader>
               <div className="flex flex-col h-full">
-                <div className="flex justify-between items-center border-b pb-4">
-                  <Link href="/" className="flex items-center gap-2">
-                     <span className="text-xl font-bold font-headline">
-                       {SITE_CONFIG.name}
-                     </span>
-                  </Link>
-                </div>
                 <nav className="flex flex-col items-start gap-4 mt-8">
                   {NAV_LINKS.map((link) => (
                     <SheetClose key={link.href} asChild>
