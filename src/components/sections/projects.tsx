@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { FadeInSection } from "@/components/common/fade-in-section";
 import {
   Card,
@@ -9,10 +8,19 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogClose,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { PROJECTS_DATA } from "@/lib/data";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, X } from "lucide-react";
 
 export default function ProjectsSection() {
   const getImage = (id: string) => {
@@ -28,7 +36,7 @@ export default function ProjectsSection() {
               Featured Projects
             </h2>
             <p className="mt-4 text-lg leading-8 text-foreground">
-              A selection of projects that showcase my skills and passion.
+              A selection of projects that showcase my skills and passion. Click on a card to explore.
             </p>
           </div>
 
@@ -36,37 +44,57 @@ export default function ProjectsSection() {
             {PROJECTS_DATA.map((project) => {
               const image = getImage(project.imagePlaceholderId);
               return (
-                <Card
-                  key={project.id}
-                  className="flex flex-col overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
-                >
-                  <CardHeader>
-                    {image && (
-                      <div className="aspect-video overflow-hidden rounded-t-lg -mt-6 -mx-6">
-                        <Image
-                          src={image.imageUrl}
-                          alt={image.description}
-                          width={600}
-                          height={400}
-                          className="object-cover w-full h-full"
-                          data-ai-hint={image.imageHint}
-                        />
-                      </div>
-                    )}
-                    <CardTitle className="pt-6 font-headline text-xl">
-                      {project.title}
-                    </CardTitle>
-                    <CardDescription>{project.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent className="flex-grow"></CardContent>
-                  <CardFooter>
-                    <Button asChild className="w-full bg-accent hover:bg-accent/90">
-                      <Link href={project.link} target="_blank" rel="noopener noreferrer">
-                        Visit Site <ExternalLink className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
-                  </CardFooter>
-                </Card>
+                <Dialog key={project.id}>
+                  <DialogTrigger asChild>
+                    <Card
+                      className="flex flex-col overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer"
+                    >
+                      <CardHeader className="p-0">
+                        {image && (
+                          <div className="aspect-video overflow-hidden">
+                            <Image
+                              src={image.imageUrl}
+                              alt={image.description}
+                              width={600}
+                              height={400}
+                              className="object-cover w-full h-full"
+                              data-ai-hint={image.imageHint}
+                            />
+                          </div>
+                        )}
+                         <div className="p-6">
+                            <CardTitle className="font-headline text-xl">
+                              {project.title}
+                            </CardTitle>
+                            <CardDescription>{project.description}</CardDescription>
+                         </div>
+                      </CardHeader>
+                      <CardContent className="flex-grow"></CardContent>
+                      <CardFooter>
+                         <p className="text-sm text-accent w-full text-center">Click to learn more</p>
+                      </CardFooter>
+                    </Card>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-4xl w-full h-[90vh] flex flex-col p-0">
+                     <DialogHeader className="p-6 pb-0">
+                       <DialogTitle className="font-headline text-2xl">{project.title}</DialogTitle>
+                       <DialogDescription>
+                         Live preview of the project. You can scroll and interact with the site below.
+                       </DialogDescription>
+                     </DialogHeader>
+                     <div className="flex-1 overflow-auto px-6 pb-6">
+                       <iframe
+                         src={project.link}
+                         className="w-full h-full border rounded-lg"
+                         title={project.title}
+                       />
+                     </div>
+                      <DialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+                        <X className="h-4 w-4" />
+                        <span className="sr-only">Close</span>
+                      </DialogClose>
+                  </DialogContent>
+                </Dialog>
               );
             })}
           </div>
