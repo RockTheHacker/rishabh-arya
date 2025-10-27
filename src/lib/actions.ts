@@ -4,6 +4,7 @@ import { z } from "zod";
 import { chatbotAnswersResumeQuestions } from "@/ai/flows/chatbot-answers-resume-questions";
 import { chatbotPitchesServices } from "@/ai/flows/chatbot-pitches-services";
 import { ContactFormSchema } from "@/lib/schemas";
+import type { ChatMessage } from "@/lib/types";
 
 export async function submitContactForm(data: z.infer<typeof ContactFormSchema>) {
   const parsedData = ContactFormSchema.safeParse(data);
@@ -24,12 +25,6 @@ export async function submitContactForm(data: z.infer<typeof ContactFormSchema>)
     return { success: false, message: "Something went wrong. Please try again." };
   }
 }
-
-export type ChatMessage = {
-  id: string;
-  role: 'user' | 'assistant';
-  content: string;
-};
 
 export async function handleChatMessage(history: ChatMessage[], userInput: string): Promise<string> {
   try {

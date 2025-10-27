@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, type FormEvent } from "react";
-import { Bot, Loader2, Send, X } from "lucide-react";
+import { Bot, Loader2, Send } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,8 +12,9 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { handleChatMessage, type ChatMessage } from "@/lib/actions";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { handleChatMessage } from "@/lib/actions";
+import type { ChatMessage } from "@/lib/types";
 import { SITE_CONFIG } from "@/lib/data";
 
 export default function Chatbot() {
