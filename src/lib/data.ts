@@ -121,9 +121,9 @@ export const PROJECTS_DATA = [
   },
   {
     id: "dr-raja-rawal",
-    title: "Dr. Raja Rawal B2B Dashboard",
+    title: "Dr. Raja Rawal - Appointment Booking",
     description:
-      "Appointment and consultation management dashboard offering real-time scheduling, reminders, and data visualization.",
+      "An appointment and consultation management website offering real-time scheduling, reminders, and data visualization.",
     link: "https://dr-raja-rawal.vercel.app/",
     imagePlaceholderId: "project-dr-raja"
   },
