@@ -5,6 +5,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Rishabh - Web & App Developer",
   description: "Interactive resume and portfolio for Rishabh, a developer specializing in web, app, and AI/ML development.",
+  icons: {
+    icon: '/pp.png',
+  },
 };
 
 export default function RootLayout({
