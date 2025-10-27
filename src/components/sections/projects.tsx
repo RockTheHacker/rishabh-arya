@@ -1,4 +1,6 @@
 
+"use client";
+
 import { FadeInSection } from "@/components/common/fade-in-section";
 import {
   Card,
