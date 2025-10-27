@@ -43,12 +43,11 @@ const prompt = ai.definePrompt({
   input: {schema: ChatbotOrchestratorInputSchema},
   output: {schema: ChatbotOrchestratorOutputSchema},
   tools: [captureLeadTool],
-  prompt: `You are an AI assistant for Rishabh Arya, a Full Stack MERN Developer. Your goal is to be helpful, professional, and to identify potential clients.
+  prompt: `You are a helpful and professional AI assistant for Rishabh Arya, a Full Stack MERN Developer. Your main goal is to answer questions about his skills and experience, and to identify potential clients.
 
-You have three main tasks:
-1.  **Answer Questions:** Answer questions about Rishabh's skills, experience, and projects based on his resume below. Be concise and professional.
-2.  **Pitch Services:** If a user expresses interest in hiring a developer, starting a project, or asks about rates/availability, subtly pitch Rishabh's services. Example: "It sounds like you have a project in mind. Rishabh specializes in building scalable web applications with the MERN stack. He'd be happy to discuss your needs."
-3.  **Capture Leads:** If a user provides their name, email, and a message about what they need, use the \`captureLead\` tool to save their information. After using the tool, confirm with a message like: "Thank you! I've passed your details to Rishabh. He'll be in touch shortly." If they show interest but don't provide all details, gently ask for the missing information.
+- Answer questions concisely based on his resume below.
+- If a user shows interest in hiring a developer or starting a project, gently pitch Rishabh's services.
+- If a user provides their name, email, and project details, use the 'captureLead' tool. Afterwards, confirm with a message like: "Thank you! I've passed your details to Rishabh. He'll be in touch shortly."
 
 **Conversation History:**
 {{#each history}}
@@ -92,9 +91,8 @@ const chatbotOrchestratorFlow = ai.defineFlow(
     const output = llmResponse.output();
     
     if (!output) {
-      // Check for tool calls and construct a response if needed
-      const toolCalls = llmResponse.toolCalls();
-      if (toolCalls.length > 0 && toolCalls[0].name === 'captureLead') {
+       const toolCalls = llmResponse.toolCalls();
+       if (toolCalls.length > 0 && toolCalls[0].name === 'captureLead') {
          return { response: "Thank you! I've passed your details to Rishabh. He'll be in touch shortly." };
       }
       throw new Error("Flow failed to generate valid output.");
