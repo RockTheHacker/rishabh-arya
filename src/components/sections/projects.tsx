@@ -1,5 +1,4 @@
 
-import Image from "next/image";
 import { FadeInSection } from "@/components/common/fade-in-section";
 import {
   Card,
@@ -9,14 +8,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { PROJECTS_DATA } from "@/lib/data";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { cn } from "@/lib/utils";
 
 export default function ProjectsSection() {
-  const getImage = (id: string) => {
-    return PlaceHolderImages.find((img) => img.id === id);
-  };
-
   return (
     <section id="projects" className="py-24 sm:py-32">
       <FadeInSection>
@@ -32,7 +26,6 @@ export default function ProjectsSection() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {PROJECTS_DATA.map((project) => {
-              const image = getImage(project.imagePlaceholderId);
               return (
                 <Card
                   key={project.id}
@@ -43,22 +36,10 @@ export default function ProjectsSection() {
                     <CardDescription>{project.description}</CardDescription>
                   </CardHeader>
                   <CardContent className="flex-grow p-0 relative aspect-[4/3] overflow-hidden">
-                    <div className="absolute inset-0 w-full h-full transition-opacity duration-500 group-hover:opacity-0">
-                      {image && (
-                          <Image
-                            src={image.imageUrl}
-                            alt={project.title}
-                            width={1280}
-                            height={960}
-                            className="object-cover w-full h-full"
-                            data-ai-hint={image.imageHint}
-                          />
-                      )}
-                    </div>
                     <div className={cn(
-                      "absolute inset-0 w-full h-full transition-opacity duration-500 opacity-0 group-hover:opacity-100 bg-background"
+                      "absolute inset-0 w-full h-full bg-background"
                     )}>
-                       <div className="w-[1280px] h-[960px] origin-top-left scale-[0.27] sm:scale-[0.4] md:scale-[0.3] lg:scale-[0.4] xl:scale-[0.5]">
+                       <div className="w-[1280px] h-[960px] origin-top-left scale-[0.27] sm:scale-[0.4] md:scale-[0.3] lg:scale-[0.4] xl:scale-[0.5] pointer-events-none group-hover:pointer-events-auto">
                         <iframe
                           src={project.link}
                           className="w-full h-full border-none"
