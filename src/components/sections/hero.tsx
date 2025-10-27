@@ -9,7 +9,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative flex items-center justify-center min-h-[calc(100vh-4rem)] py-20"
+      className="relative flex items-center justify-center min-h-[calc(100vh-4rem)] py-20 lg:min-h-[50vh] lg:py-32"
     >
       <div className="absolute inset-0 bg-grid-slate-100/[0.05] [mask-image:linear-gradient(to_bottom,white,transparent)] dark:bg-grid-slate-700/[0.05]"></div>
       <FadeInSection className="z-10 text-center px-4">
