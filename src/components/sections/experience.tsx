@@ -1,3 +1,4 @@
+
 import { FadeInSection } from "@/components/common/fade-in-section";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { EXPERIENCE_DATA } from "@/lib/data";
@@ -24,33 +25,40 @@ export default function ExperienceSection() {
                 className="relative mb-12 flex items-center w-full"
               >
                 <div className="hidden sm:block absolute top-1/2 left-1/2 w-4 h-4 bg-primary rounded-full -translate-y-1/2 -translate-x-1/2 z-10 border-4 border-background"></div>
-                <div className="block sm:hidden absolute top-0 left-4 w-4 h-4 bg-primary rounded-full -translate-y-1/2 -translate-x-1/2 z-10 border-4 border-background"></div>
-
+                <div className="block sm:hidden absolute top-4 left-4 w-4 h-4 bg-primary rounded-full -translate-y-1/2 -translate-x-1/2 z-10 border-4 border-background"></div>
+                
                 <div
-                  className={`w-full sm:w-[calc(50%-2rem)] p-4 sm:p-0 ${
-                    index % 2 === 0
-                      ? "sm:text-right sm:pr-8"
-                      : "sm:ml-[calc(50%+2rem)] sm:pl-8 sm:text-left"
-                  }`}
+                  className={
+                    "sm:w-[calc(50%-2rem)] " +
+                    (index % 2 === 0
+                      ? "sm:ml-0"
+                      : "sm:ml-[calc(50%+2rem)]")
+                  }
                 >
-                  <p className="font-semibold text-accent">{item.date}</p>
-                </div>
+                    <div 
+                      className={
+                        "ml-12 sm:ml-0 p-4 sm:p-0 " +
+                        (index % 2 === 0
+                          ? "sm:text-right sm:pr-8"
+                          : "sm:pl-8 sm:text-left")
+                      }>
+                       <p className="font-semibold text-accent">{item.date}</p>
+                    </div>
 
-                <Card
-                  className={`w-full sm:w-[calc(50%-2rem)] ml-12 sm:ml-0 shadow-lg ${
-                    index % 2 === 0 ? "sm:ml-[calc(50%+2rem)]" : ""
-                  }`}
-                >
-                  <CardHeader>
-                    <CardTitle className="font-headline text-xl">
-                      {item.title}
-                    </CardTitle>
-                    <p className="text-sm text-muted-foreground">{item.company}</p>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm">{item.description}</p>
-                  </CardContent>
-                </Card>
+                    <Card
+                      className={`ml-12 sm:ml-0 shadow-lg mt-2 sm:mt-0`}
+                    >
+                      <CardHeader>
+                        <CardTitle className="font-headline text-xl">
+                          {item.title}
+                        </CardTitle>
+                        <p className="text-sm text-muted-foreground">{item.company}</p>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-sm">{item.description}</p>
+                      </CardContent>
+                    </Card>
+                </div>
               </div>
             ))}
           </div>
