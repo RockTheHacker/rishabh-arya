@@ -16,7 +16,7 @@ export default function HeroSection() {
           Hi, I'm <span className="text-primary">{SITE_CONFIG.name}</span>
         </h1>
         <p className="mt-6 max-w-2xl mx-auto text-lg text-foreground/80 sm:text-xl">
-          A passionate Web & App Developer building modern, scalable, and
+          A Full Stack MERN Developer & Project Manager building modern, scalable, and
           intelligent digital experiences.
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-4">

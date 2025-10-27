@@ -15,7 +15,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { ContactFormSchema, submitContactForm } from "@/lib/actions";
+import { submitContactForm } from "@/lib/actions";
+import { ContactFormSchema } from "@/lib/schemas";
 import { FadeInSection } from "@/components/common/fade-in-section";
 import { Loader2 } from "lucide-react";
 

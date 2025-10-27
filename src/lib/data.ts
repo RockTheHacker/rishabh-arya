@@ -10,17 +10,18 @@ import {
 import { Icons } from "@/components/icons";
 
 export const SITE_CONFIG = {
-  name: "Rishabh",
+  name: "Rishabh Arya",
   url: "https://your-domain.com", // Replace with your domain
   ogImage: "https://your-domain.com/og.jpg", // Replace with your OG image URL
-  description: "Interactive resume and portfolio for Rishabh, a developer specializing in web, app, and AI/ML development.",
+  description: "Full Stack MERN Developer & Project Manager with over four years’ experience architecting, building, and maintaining robust web applications.",
   socialLinks: {
-    twitter: "https://twitter.com/your-profile",
-    github: "https://github.com/your-profile",
-    linkedin: "https://www.linkedin.com/in/your-profile/",
+    twitter: "#",
+    github: "https://github.com/rishabh-work-ai",
+    linkedin: "https://www.linkedin.com/in/rishabh-arya-mern/",
   },
   contact: {
-    email: "your-email@example.com",
+    email: "rishabh.work.ai@gmail.com",
+    phone: "+91-9027634330",
   },
 };
 
@@ -41,72 +42,89 @@ export const SOCIAL_LINKS = [
 
 export const EXPERIENCE_DATA = [
   {
-    title: "Lead AI/ML Developer",
-    company: "Innovate AI",
-    date: "2021 - Present",
+    title: "Lead Full Stack Developer & Project Manager",
+    company: "GenMantra Corp",
+    date: "Feb 2025 - Present",
     description:
-      "Leading the development of AI-powered solutions, specializing in Genkit and Firebase integrations. Designed and implemented scalable machine learning models and created intuitive user interfaces for complex applications.",
+      "Designed, built, and launched scalable web apps for B2B/B2C clients. Led, mentored, and managed full-stack engineering teams. Oversaw Agile practices, CI/CD pipeline integration, and technical review.",
   },
   {
-    title: "Full-Stack Developer",
-    company: "Creative Solutions Agency",
-    date: "2019 - 2021",
+    title: "Senior MERN Developer & Team Lead",
+    company: "SkillOnTime",
+    date: "May 2023 - Nov 2024",
     description:
-      "Developed and maintained full-stack web applications for a variety of clients. Worked with React, Next.js, and Node.js to build responsive and performant user experiences. Managed databases and deployed applications to cloud services.",
+      "Architected EdTech/SaaS products with modular dashboards, authentication, and cloud deployment. Led cloud API development and technical best practices adoption.",
   },
   {
-    title: "Junior Web Developer",
-    company: "Tech Starters Inc.",
-    date: "2017 - 2019",
+    title: "Full Stack Project Manager",
+    company: "Techidata Solutions",
+    date: "Apr 2022 - May 2023",
     description:
-      "Assisted in the development of front-end features for various web platforms. Gained proficiency in HTML, CSS, and JavaScript, and contributed to team projects in an agile environment.",
+      "Delivered multiple multi-module applications and managed backend integrations, reporting, and optimization.",
   },
+  {
+    title: "Freelance MERN Consultant",
+    company: "Various Startups",
+    date: "Jun 2021 - Present",
+    description: "Created SaaS, e-commerce, and education platforms for startups. Specialized in rapid MVP delivery, technical mentoring, and reusable codebase setup."
+  }
 ];
 
 export const SKILLS_DATA = {
   technical: [
-    { name: "TypeScript", icon: Icons.typescript },
-    { name: "JavaScript", icon: Icons.javascript },
-    { name: "React", icon: Icons.react },
-    { name: "Next.js", icon: Icons.nextjs },
+    { name: "React.js", icon: Icons.react },
+    { name: "Node.js", icon: Code },
+    { name: "Express.js", icon: Code },
+    { name: "MongoDB", icon: Code },
+    { name: "Tailwind CSS", icon: Code },
+    { name: "Material-UI", icon: Code },
+    { name: "Docker", icon: Code },
+    { name: "Git", icon: Github },
     { name: "Firebase", icon: Icons.firebase },
-    { name: "Genkit", icon: Icons.genkit },
-    { name: "Web Development", icon: Code },
-    { name: "App Development", icon: Smartphone },
-    { name: "AI/ML", icon: BrainCircuit },
+    { name: "AWS", icon: Code },
   ],
   soft: [
+    { name: "Project Leadership" },
+    { name: "Agile Scrum" },
+    { name: "Team Mentoring" },
+    { name: "Client Communication" },
     { name: "Problem Solving" },
-    { name: "Communication" },
-    { name: "Teamwork" },
-    { name: "Adaptability" },
-    { name: "Creativity" },
+    { name: "Collaboration" },
+    { name: "Stakeholder Engagement" },
   ],
 };
 
 export const PROJECTS_DATA = [
   {
-    id: "plant-diagnosis-app",
-    title: "AI Plant Diagnosis App",
+    id: "vinkap",
+    title: "Vinkap Enterprise Platform",
     description:
-      "A mobile-friendly web app that uses machine learning to diagnose plant diseases from images. Built with Next.js and a custom-trained model.",
-    link: "#",
-    imagePlaceholderId: "project1"
+      "Supports supply chain for bakeries and QSRs, streamlining ingredient sourcing and vendor onboarding. MERN-based dashboard with role management and real-time analytics.",
+    link: "https://vinkap.in/",
+    imagePlaceholderId: "project-vinkap"
   },
   {
-    id: "ai-chatbot",
-    title: "Customer Service Chatbot",
+    id: "manasvini",
+    title: "Manasvini – Spandana Classical Arts Portal",
     description:
-      "An intelligent chatbot for e-commerce sites that handles customer queries, processes orders, and provides support. Powered by Google's Gemini.",
-    link: "#",
-    imagePlaceholderId: "project2"
+      "Portal for classical dance registration and video galleries. Enables class scheduling, user authentication, payment workflows, and dynamic content management.",
+    link: "https://manaswini.com/3-levels-of-bharatanatyam-dance-classes-in-seattle/",
+    imagePlaceholderId: "project-manasvini"
   },
   {
-    id: "portfolio-builder",
-    title: "Interactive Resume Builder",
+    id: "exaministry",
+    title: "Exaministry EdTech Platform",
     description:
-      "A platform that allows users to create stunning, interactive portfolio websites like this one, without writing any code. Features a drag-and-drop interface.",
-    link: "#",
-    imagePlaceholderId: "project3"
+      "Education portal for exam prep, supporting adaptive courses, instructor/student roles, and analytics.",
+    link: "https://exaministry.com",
+    imagePlaceholderId: "project-exaministry"
+  },
+  {
+    id: "dr-raja-rawal",
+    title: "Dr. Raja Rawal B2B Dashboard",
+    description:
+      "Appointment and consultation management dashboard offering real-time scheduling, reminders, and data visualization.",
+    link: "https://dr-raja-rawal.vercel.app/",
+    imagePlaceholderId: "project-dr-raja"
   },
 ];

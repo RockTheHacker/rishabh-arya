@@ -1,22 +1,28 @@
 {
   "placeholderImages": [
     {
-      "id": "project1",
-      "description": "AI Plant Diagnosis App",
-      "imageUrl": "https://images.unsplash.com/photo-1699562853314-740777ce943f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxwbGFudCUyMHRlY2hub2xvZ3l8ZW58MHx8fHwxNzYxNTU2MDgwfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "plant technology"
+      "id": "project-vinkap",
+      "description": "Vinkap Enterprise Platform",
+      "imageUrl": "https://images.unsplash.com/photo-1627309366653-2dedc084cdf1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzdXBwbHklMjBjaGFpbnxlbnwwfHx8fDE3NjE1NTYzNDN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "supply chain"
     },
     {
-      "id": "project2",
-      "description": "Customer Service Chatbot",
-      "imageUrl": "https://images.unsplash.com/photo-1757310998309-87a97e562ee5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjaGF0Ym90JTIwaW50ZXJmYWNlfGVufDB8fHx8MTc2MTQ1NDE3Mnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "chatbot interface"
+      "id": "project-manasvini",
+      "description": "Manasvini – Spandana Classical Arts Portal",
+      "imageUrl": "https://images.unsplash.com/photo-1760648730126-ec2102098ffe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjbGFzc2ljYWwlMjBkYW5jZXxlbnwwfHx8fDE3NjE1NTYzNDJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "classical dance"
     },
     {
-      "id": "project3",
-      "description": "Interactive Resume Builder",
-      "imageUrl": "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx3ZWIlMjBkZXNpZ258ZW58MHx8fHwxNzYxNTQyNTM1fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "web design"
+      "id": "project-exaministry",
+      "description": "Exaministry EdTech Platform",
+      "imageUrl": "https://images.unsplash.com/photo-1610484826967-09c5720778c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxvbmxpbmUlMjBsZWFybmluZ3xlbnwwfHx8fDE3NjE0NzgyODN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "online learning"
+    },
+    {
+      "id": "project-dr-raja",
+      "description": "Dr. Raja Rawal B2B Dashboard",
+      "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxhbmFseXRpY3MlMjBkYXNoYm9hcmR8ZW58MHx8fHwxNzYxNTQzNzU2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "analytics dashboard"
     }
   ]
 }

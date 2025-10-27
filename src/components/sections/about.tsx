@@ -11,12 +11,7 @@ export default function AboutSection() {
               About Me
             </h2>
             <p className="mt-6 text-lg leading-8 text-foreground">
-              I am a passionate and experienced developer with a strong focus on
-              building modern, scalable, and intelligent applications. With a
-              background in both web and app development, I specialize in using
-              cutting-edge technologies like Next.js, Firebase, and Genkit to
-              bring ideas to life. My goal is to create meaningful digital
-              experiences that solve real-world problems.
+              Results-driven full stack developer and project manager with over four years’ experience architecting, building, and maintaining robust web applications using the MERN stack (MongoDB, Express.js, React, Node.js). Expert at leading technical teams, designing scalable modules, delivering enterprise-grade projects, and translating business needs into high-performance digital solutions. Strong mentor and communicator, skilled in client-facing work, agile delivery, and end-to-end execution.
             </p>
           </div>
         </div>
