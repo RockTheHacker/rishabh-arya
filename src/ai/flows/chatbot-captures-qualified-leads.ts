@@ -17,8 +17,16 @@ const ChatbotCapturesQualifiedLeadsInputSchema = z.object({
 export type ChatbotCapturesQualifiedLeadsInput = z.infer<typeof ChatbotCapturesQualifiedLeadsInputSchema>;
 
 const ChatbotCapturesQualifiedLeadsOutputSchema = z.object({
-  response: z.string().describe('The chatbot response to the user.'),
-  leadCaptured: z.boolean().describe('Whether or not the chatbot captured lead information.'),
+  response: z
+    .string()
+    .describe(
+      'The chatbot response to the user. This may be a request for more information or a confirmation that their details have been received.'
+    ),
+  leadCaptured: z
+    .boolean()
+    .describe(
+      'Whether or not the chatbot has successfully captured all required lead information (name, email, and a message/need).'
+    ),
 });
 export type ChatbotCapturesQualifiedLeadsOutput = z.infer<typeof ChatbotCapturesQualifiedLeadsOutputSchema>;
 
@@ -28,29 +36,34 @@ export async function chatbotCapturesQualifiedLeads(input: ChatbotCapturesQualif
 
 const captureLeadTool = ai.defineTool({
   name: 'captureLead',
-  description: 'Captures the user contact information when the user expresses interest in Rishabh\'s services.',
+  description: 'Use this tool to save a user\'s contact information when they have provided their name, email, and a reason for contacting. Do not use it if any of this information is missing.',
   inputSchema: z.object({
-    name: z.string().describe('The user\'s name.'),
-    email: z.string().email().describe('The user\'s email address.'),
-    message: z.string().describe('Additional message from the user describing their needs.'),
+    name: z.string().describe("The user's full name."),
+    email: z.string().email().describe("The user's email address."),
+    message: z.string().describe('A message from the user describing their needs or project.'),
   }),
-  outputSchema: z.boolean().describe('Returns true if the lead was successfully captured.'),
+  outputSchema: z.boolean(),
 }, async (input) => {
-  // TODO: Implement the logic to save the lead information to a database or send it via email.
   console.log('Lead captured:', input);
+  // In a real app, you would save this to a database (e.g., Firestore).
   return true;
 });
+
 
 const prompt = ai.definePrompt({
   name: 'chatbotCapturesQualifiedLeadsPrompt',
   input: {schema: ChatbotCapturesQualifiedLeadsInputSchema},
   output: {schema: ChatbotCapturesQualifiedLeadsOutputSchema},
   tools: [captureLeadTool],
-  prompt: `You are a chatbot assisting visitors to Rishabh's portfolio website. Your primary goal is to answer questions about Rishabh's skills, experience, and projects, and to identify and capture qualified leads.
+  prompt: `You are a chatbot on Rishabh Arya's portfolio. Your goal is to capture leads.
 
-  If a user expresses interest in Rishabh's web/app development services, use the captureLead tool to collect their name, email, and a message describing their needs. Be polite and professional.
+Analyze the user input to see if they are expressing interest in hiring Rishabh or starting a project.
 
-  User input: {{{userInput}}}
+- If the user provides their name, email, and a message about their needs, use the \`captureLead\` tool to save their information. Then, respond with a confirmation message like, "Thanks! I've received your details. Rishabh will get in touch shortly." and set \`leadCaptured\` to true.
+- If the user expresses interest but does NOT provide all the necessary information (name, email, message), ask for the missing details. For example: "That's great! To get started, could you please provide your name, email, and a brief description of your project?" In this case, set \`leadCaptured\` to false.
+- If the user is just asking general questions, do not try to capture a lead. Respond naturally to their question, and set \`leadCaptured\` to false.
+
+User input: {{{userInput}}}
   `,
 });
 
@@ -61,7 +74,30 @@ const chatbotCapturesQualifiedLeadsFlow = ai.defineFlow(
     outputSchema: ChatbotCapturesQualifiedLeadsOutputSchema,
   },
   async input => {
-    const {output} = await prompt(input);
-    return output!;
+    const response = await ai.generate({
+      prompt: prompt.prompt,
+      model: ai.lookupModel('googleai/gemini-2.5-flash'),
+      tools: [captureLeadTool],
+      input: { userInput: input.userInput },
+      output: { schema: ChatbotCapturesQualifiedLeadsOutputSchema },
+    });
+
+    const output = response.output();
+    if (!output) {
+      throw new Error("Flow failed to generate valid output.");
+    }
+    
+    // Check if the tool was called
+    const toolCalls = response.toolCalls();
+    if (toolCalls.length > 0) {
+      // Assuming lead is captured if tool is called.
+      return {
+        ...output,
+        response: "Thanks for your interest! Rishabh will get back to you soon.",
+        leadCaptured: true
+      };
+    }
+    
+    return output;
   }
 );

@@ -3,6 +3,7 @@
 import { z } from "zod";
 import { chatbotAnswersResumeQuestions } from "@/ai/flows/chatbot-answers-resume-questions";
 import { chatbotPitchesServices } from "@/ai/flows/chatbot-pitches-services";
+import { chatbotCapturesQualifiedLeads } from "@/ai/flows/chatbot-captures-qualified-leads";
 import { ContactFormSchema } from "@/lib/schemas";
 import type { ChatMessage } from "@/lib/types";
 
@@ -15,10 +16,8 @@ export async function submitContactForm(data: z.infer<typeof ContactFormSchema>)
 
   try {
     // In a real application, you would save this to a database or send an email.
-    // This is where you would integrate with Firebase Cloud Functions or another backend service.
-    console.log("New contact form submission:", parsedData.data);
+    await chatbotCapturesQualifiedLeads({ userInput: `Name: ${parsedData.data.name}, Email: ${parsedData.data.email}, Message: ${parsedData.data.message}` });
     
-    // Simulating lead capture as described in `chatbot-captures-qualified-leads.ts`
     return { success: true, message: "Thank you for your message! I'll get back to you soon." };
   } catch (error) {
     console.error("Error submitting contact form:", error);
@@ -28,16 +27,22 @@ export async function submitContactForm(data: z.infer<typeof ContactFormSchema>)
 
 export async function handleChatMessage(history: ChatMessage[], userInput: string): Promise<string> {
   try {
-    // 1. Get a factual answer based on resume context
-    const resumeAnswer = await chatbotAnswersResumeQuestions({ question: userInput });
+    // 1. Check for lead capture intent
+    const leadCapture = await chatbotCapturesQualifiedLeads({ userInput });
+    if (leadCapture.leadCaptured) {
+      return leadCapture.response;
+    }
 
     // 2. Determine if a sales pitch is appropriate
     const pitchDecision = await chatbotPitchesServices({ userInput });
 
+    // 3. Get a factual answer based on resume context
+    const resumeAnswer = await chatbotAnswersResumeQuestions({ question: userInput });
+
     let botResponse = resumeAnswer.answer;
 
     if (pitchDecision.shouldPitch && pitchDecision.pitchMessage) {
-        botResponse += `\n\n${pitchDecision.pitchMessage} If you're interested, you can reach out through the contact form on this page.`;
+        botResponse += `\n\n${pitchDecision.pitchMessage}`;
     }
 
     return botResponse;
