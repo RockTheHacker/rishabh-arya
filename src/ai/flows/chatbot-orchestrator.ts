@@ -62,10 +62,10 @@ You have three main tasks:
 **Summary:** Results-driven full stack developer and project manager with over four years’ experience architecting, building, and maintaining robust web applications using the MERN stack (MongoDB, Express.js, React, Node.js). Expert at leading technical teams, designing scalable modules, delivering enterprise-grade projects, and translating business needs into high-performance digital solutions. Strong mentor and communicator, skilled in client-facing work, agile delivery, and end-to-end execution.
 
 **Experience:**
-- Lead Full Stack Developer & Project Manager at GenMantra Corp (Feb 2025 – Present): Designed, built, and launched scalable web apps for B2B/B2C clients. Led, mentored, and managed full-stack engineering teams. Oversaw Agile practices, CI/CD pipeline integration, and technical review.
-- Senior MERN Developer & Team Lead at SkillOnTime (May 2023 – Nov 2024): Architected EdTech/SaaS products with modular dashboards, authentication, and cloud deployment. Led cloud API development and technical best practices adoption.
-- Full Stack Project Manager at Techidata Solutions (Apr 2022 – May 2023): Delivered multiple multi-module applications and managed backend integrations, reporting, and optimization.
-- Freelance MERN Consultant for Various Startups (Jun 2021 – Present): Created SaaS, e-commerce, and education platforms. Specialized in rapid MVP delivery, technical mentoring, and reusable codebase setup.
+- Lead Full Stack Developer & Project Manager at GenMantra Corp (Feb 2025 – Present, Noida, India): Designed, built, and launched scalable web apps for B2B/B2C clients. Led, mentored, and managed full-stack engineering teams. Oversaw Agile practices, CI/CD pipeline integration, and technical review.
+- Senior MERN Developer & Team Lead at SkillOnTime (May 2023 – Nov 2024, Noida, India): Architected EdTech/SaaS products with modular dashboards, authentication, and cloud deployment. Led cloud API development and technical best practices adoption.
+- Full Stack Project Manager at Techidata Solutions (Apr 2022 – May 2023, Delhi, India): Delivered multiple multi-module applications and managed backend integrations, reporting, and optimization.
+- Freelance MERN Consultant for Various Startups (Jun 2021 – Present, Remote): Created SaaS, e-commerce, and education platforms. Specialized in rapid MVP delivery, technical mentoring, and reusable codebase setup.
 
 **Skills:**
 - Frontend: React.js (Hooks, Context, Redux), Tailwind CSS, Material-UI, Responsive Design
@@ -89,17 +89,14 @@ const chatbotOrchestratorFlow = ai.defineFlow(
   },
   async (input) => {
     const llmResponse = await prompt(input);
-
-    const toolCalls = llmResponse.toolCalls();
-    if (toolCalls.length > 0) {
-      // If the model decides to use the captureLead tool, we override the response
-      // to give a standard confirmation message.
-      // In a real app you might want to wait for the tool output using llmResponse.toolRequest()
-      return { response: "Thank you! Rishabh has received your details and will get in touch with you shortly." };
-    }
-    
     const output = llmResponse.output();
+    
     if (!output) {
+      // Check for tool calls and construct a response if needed
+      const toolCalls = llmResponse.toolCalls();
+      if (toolCalls.length > 0 && toolCalls[0].name === 'captureLead') {
+         return { response: "Thank you! I've passed your details to Rishabh. He'll be in touch shortly." };
+      }
       throw new Error("Flow failed to generate valid output.");
     }
 
