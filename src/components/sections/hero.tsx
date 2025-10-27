@@ -4,13 +4,15 @@ import { FadeInSection } from "@/components/common/fade-in-section";
 import { Button } from "@/components/ui/button";
 import { ArrowDown, MessageCircle } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/data";
+import FloatingIcons from "@/components/common/floating-icons";
 
 export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative flex items-center justify-center min-h-[calc(100vh-4rem)] py-20 lg:min-h-[50vh] lg:py-32"
+      className="relative flex items-center justify-center min-h-[calc(100vh-4rem)] py-20 lg:min-h-screen lg:py-32"
     >
+      <FloatingIcons />
       <div className="absolute inset-0 bg-grid-slate-100/[0.05] [mask-image:linear-gradient(to_bottom,white,transparent)] dark:bg-grid-slate-700/[0.05]"></div>
       <FadeInSection className="z-10 text-center px-4">
         <div className="flex flex-col items-center gap-8 md:flex-row md:gap-12">
