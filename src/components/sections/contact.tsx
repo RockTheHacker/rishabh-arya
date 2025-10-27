@@ -16,8 +16,9 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ContactFormSchema } from "@/lib/schemas";
 import { FadeInSection } from "@/components/common/fade-in-section";
-import { Loader2 } from "lucide-react";
+import { Loader2, Mail, Phone } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/data";
+import Link from "next/link";
 
 export default function ContactSection() {
   const form = useForm<z.infer<typeof ContactFormSchema>>({
@@ -52,6 +53,16 @@ export default function ContactSection() {
                 Have a project in mind or want to collaborate? I'd love to hear
                 from you.
               </p>
+               <div className="mt-6 flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-8 text-foreground">
+                <Link href={`mailto:${SITE_CONFIG.contact.email}`} className="flex items-center gap-2 hover:text-primary transition-colors">
+                  <Mail className="h-5 w-5" />
+                  <span>{SITE_CONFIG.contact.email}</span>
+                </Link>
+                <Link href={`tel:${SITE_CONFIG.contact.phone}`} className="flex items-center gap-2 hover:text-primary transition-colors">
+                  <Phone className="h-5 w-5" />
+                  <span>+{SITE_CONFIG.contact.phone}</span>
+                </Link>
+              </div>
             </div>
             <Form {...form}>
               <form

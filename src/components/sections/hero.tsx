@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { FadeInSection } from "@/components/common/fade-in-section";
 import { Button } from "@/components/ui/button";
-import { ArrowDown, MessageCircle } from "lucide-react";
+import { ArrowDown, Download, MessageCircle } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/data";
 import FloatingIcons from "@/components/common/floating-icons";
 
@@ -45,6 +45,12 @@ export default function HeroSection() {
             <Link href="#projects">
               View My Work
               <ArrowDown className="ml-2 h-5 w-5" />
+            </Link>
+          </Button>
+           <Button size="lg" variant="outline" asChild>
+            <Link href="/resume.pdf" target="_blank" download>
+              <Download className="mr-2 h-5 w-5" />
+              Download Resume
             </Link>
           </Button>
         </div>

@@ -9,7 +9,10 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-center md:text-left">
             <p className="text-lg font-headline font-semibold">{SITE_CONFIG.name}</p>
-            <p className="text-sm text-muted-foreground">
+            <Link href={`mailto:${SITE_CONFIG.contact.email}`} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+              {SITE_CONFIG.contact.email}
+            </Link>
+            <p className="text-sm text-muted-foreground mt-1">
               &copy; {new Date().getFullYear()} All Rights Reserved.
             </p>
           </div>
